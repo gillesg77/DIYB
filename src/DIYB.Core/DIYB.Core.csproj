@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Volontairement sans suffixe -windows : tout le coeur (mDNS, HTTP, JSON) est
+         portable, ce qui garde les tests rapides et exécutables sans desktop runtime. -->
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>DIYB.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DIYB.Core.Tests" />
+  </ItemGroup>
+
+</Project>

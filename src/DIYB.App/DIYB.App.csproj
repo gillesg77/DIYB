@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>DIYB.App</RootNamespace>
+    <AssemblyName>DIYB</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\DIYB.ico</ApplicationIcon>
+    <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <UseWinUI>true</UseWinUI>
+
+    <!-- Déploiement non empaqueté : l'application se lance depuis un simple dossier,
+         WindowsAppSDKSelfContained embarquant le runtime WinUI. -->
+    <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <EnableMsixTooling>true</EnableMsixTooling>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250602001" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2526" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\DIYB.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DIYB.Core\DIYB.Core.csproj" />
+    <ProjectReference Include="..\DIYB.Localization\DIYB.Localization.csproj" />
+  </ItemGroup>
+
+  <!-- dotnet publish n'emporte pas les XAML compilés, et l'application se ferme
+       alors en silence au démarrage faute de pouvoir charger ses vues. -->
+  <Target Name="PublishCompiledXaml" BeforeTargets="ComputeResolvedFilesToPublishList">
+    <ItemGroup>
+      <_CompiledXaml Include="$(OutputPath)**\*.xbf" />
+      <ResolvedFileToPublish Include="@(_CompiledXaml)">
+        <RelativePath>%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

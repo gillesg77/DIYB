@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>DIYB.Cli</RootNamespace>
+    <!-- Nom distinct de l'interface graphique : les deux peuvent cohabiter dans un
+         même dossier de déploiement. -->
+    <AssemblyName>diyb-cli</AssemblyName>
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DIYB.Core\DIYB.Core.csproj" />
+    <ProjectReference Include="..\DIYB.Localization\DIYB.Localization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DIYB.Core.Tests" />
+  </ItemGroup>
+
+</Project>

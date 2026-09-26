@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>DIYB.Localization</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DIYB.Core\DIYB.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Recopiées dans la sortie de tout projet référençant celui-ci : l'interface et
+         la ligne de commande partagent les mêmes traductions. -->
+    <Content Include="Strings\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

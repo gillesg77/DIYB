@@ -1,0 +1,20 @@
+# Sorties de compilation
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+TestResults/
+
+# Fichiers d'environnement de développement
+.vs/
+.idea/
+*.user
+*.suo
+*.userprefs
+
+# Artefacts de publication et installeur
+publish/
+
+# Temporaires
+*.tmp
+*.log
