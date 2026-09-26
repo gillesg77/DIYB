@@ -78,14 +78,20 @@ Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environmen
 [Run]
 ; Les règles portent sur le chemin de l'exécutable : une installation ailleurs
 ; en exige de nouvelles, d'où leur création ici plutôt qu'un port global.
+; profile=any et non privé/domaine : Windows classe couramment un réseau filaire
+; d'entreprise en « Public », et la découverte échouerait alors en silence.
 Filename: "{sys}\netsh.exe"; \
-    Parameters: "advfirewall firewall add rule name=""DIYB - découverte mDNS"" dir=in action=allow program=""{app}\{#AppExe}"" protocol=udp profile=private,domain enable=yes"; \
+    Parameters: "advfirewall firewall add rule name=""DIYB - découverte mDNS"" dir=in action=allow program=""{app}\{#AppExe}"" protocol=udp profile=any enable=yes"; \
     Flags: runhidden waituntilterminated; Tasks: firewall
 Filename: "{sys}\netsh.exe"; \
-    Parameters: "advfirewall firewall add rule name=""DIYB - découverte mDNS (ligne de commande)"" dir=in action=allow program=""{app}\cli\{#CliExe}"" protocol=udp profile=private,domain enable=yes"; \
+    Parameters: "advfirewall firewall add rule name=""DIYB - découverte mDNS (ligne de commande)"" dir=in action=allow program=""{app}\cli\{#CliExe}"" protocol=udp profile=any enable=yes"; \
     Flags: runhidden waituntilterminated; Tasks: firewall
 
 Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchApp}"; Flags: nowait postinstall skipifsilent
+
+[UninstallDelete]
+; Répertoires créés à l'exécution par le Windows App SDK.
+Type: filesandordirs; Name: "{app}"
 
 [UninstallRun]
 Filename: "{sys}\netsh.exe"; \
@@ -95,11 +101,48 @@ Filename: "{sys}\netsh.exe"; \
     Parameters: "advfirewall firewall delete rule name=""DIYB - découverte mDNS (ligne de commande)"""; \
     Flags: runhidden waituntilterminated; RunOnceId: "RemoveFirewallCli"
 
-[UninstallDelete]
-; Répertoires créés à l'exécution par le Windows App SDK.
-Type: filesandordirs; Name: "{app}"
+; Windows ajoute ses propres règles, sous le seul nom de l'exécutable, quand
+; l'utilisateur répond à l'invite au premier lancement : elles survivraient au
+; désinstalleur si on ne visait que les nôtres.
+Filename: "{sys}\netsh.exe"; \
+    Parameters: "advfirewall firewall delete rule name=all program=""{app}\{#AppExe}"""; \
+    Flags: runhidden waituntilterminated; RunOnceId: "RemoveFirewallAppAuto"
+Filename: "{sys}\netsh.exe"; \
+    Parameters: "advfirewall firewall delete rule name=all program=""{app}\cli\{#CliExe}"""; \
+    Flags: runhidden waituntilterminated; RunOnceId: "RemoveFirewallCliAuto"
 
 [Code]
+{ Retire l'entrée du PATH machine à la désinstallation : ajoutée sans être
+  reprise, elle laissait un chemin mort derrière chaque suppression. }
+procedure RemoveFromPath(Entry: string);
+var
+  Existing: string;
+  Position: Integer;
+begin
+  if not RegQueryStringValue(HKEY_LOCAL_MACHINE,
+      'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', Existing) then
+    exit;
+
+  Position := Pos(Uppercase(';' + Entry), Uppercase(Existing));
+  if Position = 0 then
+  begin
+    Position := Pos(Uppercase(Entry + ';'), Uppercase(Existing));
+    if Position = 0 then exit;
+    Delete(Existing, Position, Length(Entry) + 1);
+  end
+  else
+    Delete(Existing, Position, Length(Entry) + 1);
+
+  RegWriteExpandStringValue(HKEY_LOCAL_MACHINE,
+    'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', Existing);
+end;
+
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+  if CurUninstallStep = usUninstall then
+    RemoveFromPath(ExpandConstant('{app}\cli'));
+end;
+
 { Évite de rallonger le PATH à chaque réinstallation. }
 function NeedsPathEntry(Param: string): Boolean;
 var
