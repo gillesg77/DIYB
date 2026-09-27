@@ -31,6 +31,7 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     private ConfigProfile? _activeProfile;
     private int _simulatorCount;
     private bool _showCloudDevices;
+    private AppSettings _settings = new();
 
     public MainViewModel()
     {
@@ -165,6 +166,7 @@ public sealed class MainViewModel : ObservableObject, IDisposable
 
         var settings = await JsonStore.LoadAsync<AppSettings>(AppPaths.Settings).ConfigureAwait(true)
             ?? new AppSettings();
+        _settings = settings;
 
         Localizer.Current.Load(AppPaths.Languages, settings.Language);
 
@@ -185,11 +187,18 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         Status = Loc["devices.scanning"];
     }
 
-    public Task SaveSettingsAsync() => JsonStore.SaveAsync(AppPaths.Settings, new AppSettings
+    /// <summary>Géométrie relevée à la fermeture par la fenêtre hôte.</summary>
+    public WindowPlacement? Placement { get; set; }
+
+    /// <summary>Repart des réglages chargés au lieu d'en reconstruire de neufs :
+    /// les champs que l'interface ne pilote pas — les catalogues de firmware —
+    /// étaient effacés à chaque fermeture.</summary>
+    public Task SaveSettingsAsync() => JsonStore.SaveAsync(AppPaths.Settings, _settings with
     {
         Language = Localizer.Current.Language,
         ActiveProfile = ActiveProfile?.Name,
         ShowCloudDevices = ShowCloudDevices,
+        Window = Placement ?? _settings.Window,
     });
 
     public void Rename(DeviceRow row, string name)
@@ -499,16 +508,4 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         _mdns.Dispose();
         _network.Dispose();
     }
-}
-
-public sealed record AppSettings
-{
-    public string? Language { get; init; }
-
-    public string? ActiveProfile { get; init; }
-
-    public bool ShowCloudDevices { get; init; }
-
-    /// <summary>Catalogues de firmware interrogés au démarrage : chemins locaux ou URL.</summary>
-    public IReadOnlyList<string> FirmwareCatalogs { get; init; } = Array.Empty<string>();
 }

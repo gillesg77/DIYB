@@ -120,7 +120,12 @@ $empreintes = Get-ChildItem $publish -File |
     Sort-Object Name | ForEach-Object {
     "{0}  {1}" -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant(), $_.Name
 }
-$empreintes | Set-Content (Join-Path $publish "SHA256SUMS.txt") -Encoding ascii
+# LF et non CRLF : « sha256sum -c » ne sait pas lire un nom de fichier suivi d'un
+# retour chariot, et le fichier n'a d'autre raison d'être que d'être vérifié.
+[System.IO.File]::WriteAllText(
+    (Join-Path $publish "SHA256SUMS.txt"),
+    (($empreintes -join "`n") + "`n"),
+    [System.Text.UTF8Encoding]::new($false))
 
 Write-Host "`nArtefacts :"
 Get-ChildItem $publish -File | ForEach-Object {
