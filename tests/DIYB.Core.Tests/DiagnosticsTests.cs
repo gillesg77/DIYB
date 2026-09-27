@@ -18,15 +18,41 @@ public class InboundDiagnosticTests
     }
 
     [Fact]
-    public void Le_registre_signale_un_entrant_probablement_bloque()
+    public void Un_chemin_sans_regle_ne_peut_pas_recevoir()
+    {
+        // Aucune règle ne vise ce chemin : l'entrant est refusé par défaut.
+        var status = FirewallInspector.Inspect(@"C:\introuvableucun-programme.exe");
+
+        Assert.Equal(FirewallVerdict.NoRule, status.Verdict);
+        Assert.True(status.PreventsDiscovery);
+    }
+
+    [Fact]
+    public void Un_chemin_vide_ne_donne_aucun_verdict()
+    {
+        // Ne rien conclure vaut mieux qu'accuser le pare-feu à tort.
+        Assert.Equal(FirewallVerdict.Unknown, FirewallInspector.Inspect(null).Verdict);
+        Assert.Equal(FirewallVerdict.Unknown, FirewallInspector.Inspect("   ").Verdict);
+        Assert.False(FirewallInspector.Inspect(null).PreventsDiscovery);
+    }
+
+    [Fact]
+    public void L_inspection_du_processus_courant_aboutit()
+    {
+        // Le verdict dépend du poste ; seule compte l'absence d'exception.
+        var status = FirewallInspector.InspectCurrentProcess();
+
+        Assert.True(Enum.IsDefined(status.Verdict));
+    }
+
+    [Fact]
+    public void Le_registre_expose_le_verdict_du_pare_feu()
     {
         using var mdns = new MdnsClient();
         using var registry = new DeviceRegistry(mdns, new ApiLog());
 
-        // Rien reçu : sur un réseau vivant, l'absence totale de trafic mDNS
-        // désigne le pare-feu, pas l'absence d'appareils.
-        Assert.True(registry.InboundLikelyBlocked);
         Assert.Equal(0, registry.PacketsReceived);
+        Assert.Equal(registry.Firewall.PreventsDiscovery, registry.InboundBlocked);
     }
 
     [Fact]

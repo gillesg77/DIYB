@@ -58,7 +58,7 @@
   "devices.count": "{0} thiết bị",
   "devices.selected": "Đã chọn {0}",
   "devices.empty": "Không tìm thấy thiết bị nào. Hãy chuyển các mô-đun sang chế độ DIY và giữ nguyên cùng mạng.",
-  "devices.emptyFirewall": "Không nhận được bất kỳ thông báo mạng nào. Tường lửa đang chặn UDP đến của chương trình này — hãy cài đặt lại với tùy chọn tường lửa được chọn, hoặc thêm quy tắc thủ công.",
+  "devices.emptyFirewall": "Tường lửa Windows đang ngăn chương trình này nhận dữ liệu trên mạng. Hãy cài đặt lại với tùy chọn tường lửa được chọn, hoặc thêm thủ công một quy tắc đến.",
   "devices.scanning": "Đang lắng nghe thông báo…",
   "device.cloudBadge": "ĐÁM MÂY",
   "device.cloudMode": "Chế độ đám mây — không điều khiển được",

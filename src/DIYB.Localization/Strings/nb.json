@@ -58,7 +58,7 @@
   "devices.count": "{0} enhet(er)",
   "devices.selected": "{0} valgt",
   "devices.empty": "Ingen enhet funnet. Sett modulene i DIY-modus og bli på samme nettverk.",
-  "devices.emptyFirewall": "Ingen nettverkskunngjøring mottatt i det hele tatt. Brannmuren blokkerer innkommende UDP for dette programmet — installer på nytt med brannmuralternativet avkrysset, eller legg til en regel manuelt.",
+  "devices.emptyFirewall": "Windows-brannmuren hindrer dette programmet i å motta på nettverket. Installer på nytt med brannmuralternativet avkrysset, eller legg til en innkommende regel manuelt.",
   "devices.scanning": "Lytter etter kunngjøringer…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Skymodus — kan ikke styres",

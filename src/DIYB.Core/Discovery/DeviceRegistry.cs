@@ -51,10 +51,13 @@ public sealed class DeviceRegistry : IDisposable
 
     public long PacketsReceived => _mdns.PacketsReceived;
 
-    /// <summary>Vrai quand l'écoute n'a rien reçu du tout : sur un réseau vivant
-    /// c'est le signe que le pare-feu bloque l'UDP entrant pour ce programme, pas
-    /// qu'aucun appareil n'est présent.</summary>
-    public bool InboundLikelyBlocked => PacketsReceived == 0;
+    /// <summary>État du pare-feu pour ce programme, lu dans ses règles plutôt que
+    /// déduit du trafic : la règle « mDNS (UDP-Entrée) » de Windows laisse passer le
+    /// multicast même lorsque le programme est bloqué, et un simple comptage de
+    /// paquets conclurait à tort que tout va bien.</summary>
+    public FirewallStatus Firewall { get; } = FirewallInspector.InspectCurrentProcess();
+
+    public bool InboundBlocked => Firewall.PreventsDiscovery;
 
     public void Start()
     {

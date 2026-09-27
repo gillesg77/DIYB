@@ -58,7 +58,7 @@
   "devices.count": "{0} seade(t)",
   "devices.selected": "Valitud: {0}",
   "devices.empty": "Ühtegi seadet ei leitud. Seadke moodulid DIY-režiimi ja püsige samas võrgus.",
-  "devices.emptyFirewall": "Ühtegi võrguteadet ei saadud. Tulemüür blokeerib selle programmi sissetuleva UDP — installige uuesti tulemüüri valik märgituna või lisage reegel käsitsi.",
+  "devices.emptyFirewall": "Windowsi tulemüür takistab sellel programmil võrgust vastu võtta. Installige uuesti tulemüüri valik märgituna või lisage käsitsi sissetulev reegel.",
   "devices.scanning": "Teadaannete ootamine…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Pilverežiim — pole juhitav",

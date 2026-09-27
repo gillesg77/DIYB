@@ -58,7 +58,7 @@
   "devices.count": "{0} enhet(er)",
   "devices.selected": "{0} markerade",
   "devices.empty": "Ingen enhet hittades. Sätt modulerna i DIY-läge och stanna på samma nätverk.",
-  "devices.emptyFirewall": "Inget nätverksmeddelande har tagits emot alls. Brandväggen blockerar inkommande UDP för det här programmet — installera om med brandväggsalternativet ikryssat, eller lägg till en regel för hand.",
+  "devices.emptyFirewall": "Windows-brandväggen hindrar det här programmet från att ta emot på nätverket. Installera om med brandväggsalternativet ikryssat, eller lägg till en inkommande regel för hand.",
   "devices.scanning": "Lyssnar efter annonseringar…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Molnläge — kan inte styras",

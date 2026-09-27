@@ -58,7 +58,7 @@
   "devices.count": "{0} uređaj(a)",
   "devices.selected": "Označeno: {0}",
   "devices.empty": "Nije pronađen nijedan uređaj. Prebacite module u DIY način rada i ostanite na istoj mreži.",
-  "devices.emptyFirewall": "Nije primljena nijedna mrežna objava. Vatrozid blokira dolazni UDP za ovaj program — ponovo instalirajte sa označenom opcijom vatrozida ili dodajte pravilo ručno.",
+  "devices.emptyFirewall": "Vatrozid sistema Windows sprečava ovaj program da prima sa mreže. Ponovo instalirajte sa označenom opcijom vatrozida ili ručno dodajte dolazno pravilo.",
   "devices.scanning": "Osluškivanje objava…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Način rada u oblaku — nije upravljiv",

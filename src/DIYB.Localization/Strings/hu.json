@@ -58,7 +58,7 @@
   "devices.count": "{0} eszköz",
   "devices.selected": "{0} kijelölve",
   "devices.empty": "Nem található eszköz. Állítsa a modulokat DIY módba, és maradjon ugyanazon a hálózaton.",
-  "devices.emptyFirewall": "Egyetlen hálózati bejelentés sem érkezett. A tűzfal blokkolja a program bejövő UDP-forgalmát — telepítse újra a tűzfal beállítás bejelölésével, vagy adjon hozzá szabályt kézzel.",
+  "devices.emptyFirewall": "A Windows tűzfal megakadályozza, hogy ez a program fogadjon a hálózatról. Telepítse újra a tűzfal beállítás bejelölésével, vagy adjon hozzá kézzel egy bejövő szabályt.",
   "devices.scanning": "Bejelentések figyelése…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Felhő mód — nem vezérelhető",

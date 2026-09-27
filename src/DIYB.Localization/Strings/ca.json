@@ -58,7 +58,7 @@
   "devices.count": "{0} dispositiu(s)",
   "devices.selected": "{0} seleccionat(s)",
   "devices.empty": "No s'ha trobat cap dispositiu. Poseu els mòduls en mode DIY i mantingueu-vos a la mateixa xarxa.",
-  "devices.emptyFirewall": "No s'ha rebut cap anunci de xarxa. El tallafoc bloqueja l'UDP entrant per a aquest programa: reinstal·leu amb l'opció de tallafoc marcada o afegiu una regla a mà.",
+  "devices.emptyFirewall": "El Tallafoc de Windows impedeix que aquest programa rebi de la xarxa. Reinstal·leu amb l'opció de tallafoc marcada o afegiu a mà una regla d'entrada.",
   "devices.scanning": "Escoltant els anuncis…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Mode núvol — no controlable",

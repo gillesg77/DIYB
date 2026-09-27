@@ -32,10 +32,13 @@ only. To add one by hand:
 netsh advfirewall firewall add rule name="DIYB - mDNS discovery" dir=in action=allow program="C:\path\to\DIYB.exe" protocol=udp profile=private,domain enable=yes
 ```
 
-When nothing is received at all — not a single mDNS datagram, where any live
-network produces a steady trickle from printers, TVs and shared drives — the
-application says so explicitly instead of reporting an empty list. A blocked
-firewall and an empty site no longer look alike.
+The application reads its own firewall rules through `INetFwPolicy2` and says so
+explicitly when nothing authorises it on the current network profile, naming the
+offending rule. A blocked firewall and an empty site no longer look alike.
+
+Counting received packets would not do: Windows ships an `mDNS (UDP-In)` rule that
+admits multicast for any program, so traffic keeps arriving even while the program
+itself is blocked — measured here at 95 datagrams for zero devices.
 
 To see what is blocking:
 

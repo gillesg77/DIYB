@@ -58,7 +58,7 @@
   "devices.count": "{0} dyfais",
   "devices.selected": "{0} wedi'u dewis",
   "devices.empty": "Ni chanfuwyd unrhyw ddyfais. Rhowch y modiwlau ym modd DIY ac arhoswch ar yr un rhwydwaith.",
-  "devices.emptyFirewall": "Ni dderbyniwyd unrhyw gyhoeddiad rhwydwaith o gwbl. Mae'r wal dân yn rhwystro UDP sy'n dod i mewn ar gyfer y rhaglen hon — ailosodwch gyda'r opsiwn wal dân wedi'i dicio, neu ychwanegwch reol â llaw.",
+  "devices.emptyFirewall": "Mae Wal Dân Windows yn atal y rhaglen hon rhag derbyn ar y rhwydwaith. Ailosodwch gyda'r opsiwn wal dân wedi'i dicio, neu ychwanegwch reol i mewn â llaw.",
   "devices.scanning": "Yn gwrando am gyhoeddiadau…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Modd cwmwl — methu ei reoli",

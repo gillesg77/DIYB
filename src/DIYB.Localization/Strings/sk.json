@@ -58,7 +58,7 @@
   "devices.count": "Zariadenia: {0}",
   "devices.selected": "Vybrané: {0}",
   "devices.empty": "Nenašlo sa žiadne zariadenie. Prepnite moduly do režimu DIY a zostaňte v tej istej sieti.",
-  "devices.emptyFirewall": "Neprijalo sa žiadne sieťové oznámenie. Brána firewall blokuje prichádzajúce UDP pre tento program — preinštalujte so zaškrtnutou voľbou firewallu alebo pridajte pravidlo ručne.",
+  "devices.emptyFirewall": "Brána Windows Firewall bráni tomuto programu v príjme zo siete. Preinštalujte so zaškrtnutou voľbou firewallu alebo ručne pridajte prichádzajúce pravidlo.",
   "devices.scanning": "Načúvanie oznámeniam…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Cloudový režim — nedá sa ovládať",

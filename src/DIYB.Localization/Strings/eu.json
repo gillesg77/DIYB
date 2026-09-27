@@ -58,7 +58,7 @@
   "devices.count": "{0} gailu",
   "devices.selected": "{0} hautatuta",
   "devices.empty": "Ez da gailurik aurkitu. Jarri moduluak DIY moduan eta egon sare berean.",
-  "devices.emptyFirewall": "Ez da sareko iragarkirik jaso. Suebakiak programa honen sarrerako UDP blokeatzen du — berrinstalatu suebakiaren aukera markatuta, edo gehitu arau bat eskuz.",
+  "devices.emptyFirewall": "Windows-en suebakiak programa honi saretik jasotzea eragozten dio. Berrinstalatu suebakiaren aukera markatuta, edo gehitu eskuz sarrerako arau bat.",
   "devices.scanning": "Iragarkien zain…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Hodei modua — ezin da kontrolatu",

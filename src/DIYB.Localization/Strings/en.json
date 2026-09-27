@@ -58,7 +58,7 @@
   "devices.count": "{0} device(s)",
   "devices.selected": "{0} selected",
   "devices.empty": "No device found. Put the modules in DIY mode and stay on the same network.",
-  "devices.emptyFirewall": "No network announcement received at all. The firewall is blocking inbound UDP for this program — reinstall with the firewall option enabled, or add a rule by hand.",
+  "devices.emptyFirewall": "Windows Firewall is preventing this program from receiving on the network. Reinstall with the firewall option enabled, or add an inbound rule by hand.",
   "devices.scanning": "Listening for announcements…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Cloud mode — not controllable",

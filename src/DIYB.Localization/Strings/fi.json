@@ -58,7 +58,7 @@
   "devices.count": "{0} laite(tta)",
   "devices.selected": "{0} valittu",
   "devices.empty": "Laitteita ei löytynyt. Aseta moduulit DIY-tilaan ja pysy samassa verkossa.",
-  "devices.emptyFirewall": "Verkkoilmoituksia ei ole vastaanotettu lainkaan. Palomuuri estää tämän ohjelman saapuvan UDP-liikenteen — asenna uudelleen palomuurivalinta ruksattuna tai lisää sääntö käsin.",
+  "devices.emptyFirewall": "Windowsin palomuuri estää tätä ohjelmaa vastaanottamasta verkosta. Asenna uudelleen palomuurivalinta ruksattuna tai lisää saapuva sääntö käsin.",
   "devices.scanning": "Kuunnellaan ilmoituksia…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Pilvitila — ei ohjattavissa",

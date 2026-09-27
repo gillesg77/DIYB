@@ -58,7 +58,7 @@
   "devices.count": "{0} tæki",
   "devices.selected": "{0} valin",
   "devices.empty": "Ekkert tæki fannst. Settu einingarnar í DIY-ham og vertu á sama neti.",
-  "devices.emptyFirewall": "Engin nettilkynning barst. Eldveggurinn lokar á móttekið UDP fyrir þetta forrit — settu upp aftur með eldveggsvalkostinn merktan, eða bættu við reglu handvirkt.",
+  "devices.emptyFirewall": "Windows-eldveggurinn kemur í veg fyrir að þetta forrit taki á móti af netinu. Settu upp aftur með eldveggsvalkostinn merktan, eða bættu handvirkt við innkomandi reglu.",
   "devices.scanning": "Hlustað eftir tilkynningum…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Skýjaháttur — ekki stýranlegt",

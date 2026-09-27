@@ -56,13 +56,18 @@ namespace DIYB.Cli
             {
                 // Diagnostic avant tout : sans un seul datagramme reçu, l'absence
                 // d'appareils s'explique par le pare-feu, pas par le parc.
-                if (registry.InboundLikelyBlocked && !json)
-                    Console.Error.WriteLine(Localizer.Current["devices.emptyFirewall"]);
+                if (registry.InboundBlocked && !json)
+                    Console.Error.WriteLine(FirewallMessage(registry.Firewall));
 
                 var code = await DispatchAsync(arguments, targets, registry, book, client, fleet, json).ConfigureAwait(false);
 
                 if (arguments.Flag("verbose"))
+                {
+                    Console.Error.WriteLine(
+                        $"mDNS: {registry.PacketsReceived} datagramme(s) reçu(s), {registry.Devices.Count} appareil(s) assemblé(s), pare-feu: {registry.Firewall.Verdict}"
+                        + (registry.Firewall.RuleName is { } nom ? $" (« {nom} »)" : string.Empty));
                     DumpLog(log);
+                }
 
                 return code;
             }
@@ -433,6 +438,14 @@ namespace DIYB.Cli
                 return ExitNoDevice;
 
             return results.Any(r => !r.Success) ? ExitFailure : ExitOk;
+        }
+
+        /// <summary>Le nom de la règle fautive est ajouté au message traduit : il
+        /// évite de chercher laquelle, parmi la dizaine que Windows accumule.</summary>
+        private static string FirewallMessage(FirewallStatus status)
+        {
+            var message = Localizer.Current["devices.emptyFirewall"];
+            return status.RuleName is { } nom ? $"{message} (« {nom} »)" : message;
         }
 
         private static int NoDevice(bool json)

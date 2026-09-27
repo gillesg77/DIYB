@@ -58,7 +58,7 @@
   "devices.count": "{0} Apparat(er)",
   "devices.selected": "{0} ausgewielt",
   "devices.empty": "Keen Apparat fonnt. Setzt d'Moduler an den DIY-Modus a bleift am selwechten Netz.",
-  "devices.emptyFirewall": "Guer keng Netzukënnegung kritt. D'Firewall blockéiert den erakommenden UDP fir dëse Programm — installéiert nei mat der Firewall-Optioun ugekräizt, oder füügt eng Regel vun Hand bäi.",
+  "devices.emptyFirewall": "D'Windows-Firewall hënnert dëse Programm um Empfang am Netz. Installéiert nei mat der Firewall-Optioun ugekräizt, oder füügt vun Hand eng erakommend Regel bäi.",
   "devices.scanning": "Waart op Ukënnegungen…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Cloud-Modus — net steierbar",

@@ -58,7 +58,7 @@
   "devices.count": "{0} dispositivo(s)",
   "devices.selected": "{0} selecionado(s)",
   "devices.empty": "Nenhum dispositivo encontrado. Coloque os módulos em modo DIY e permaneça na mesma rede.",
-  "devices.emptyFirewall": "Nenhum anúncio de rede recebido. A firewall bloqueia o UDP de entrada para este programa — reinstale com a opção de firewall ativada ou adicione uma regra manualmente.",
+  "devices.emptyFirewall": "A Firewall do Windows impede este programa de receber na rede. Reinstale com a opção de firewall ativada ou adicione manualmente uma regra de entrada.",
   "devices.scanning": "À escuta dos anúncios…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Modo nuvem — não controlável",

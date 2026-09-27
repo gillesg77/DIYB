@@ -33,10 +33,15 @@ Pour les poser à la main :
 netsh advfirewall firewall add rule name="DIYB - découverte mDNS" dir=in action=allow program="C:\chemin\vers\DIYB.exe" protocol=udp profile=private,domain enable=yes
 ```
 
-Quand rien n'est reçu du tout — pas un datagramme mDNS, là où tout réseau vivant
-en produit un filet continu, imprimantes, téléviseurs et partages confondus —
-l'application le dit explicitement au lieu d'annoncer une liste vide. Un pare-feu
-qui bloque et un site sans appareils ne se ressemblent plus.
+L'application lit ses propres règles de pare-feu via `INetFwPolicy2` et le dit
+explicitement quand rien ne l'autorise sur le profil réseau courant, en nommant la
+règle fautive. Un pare-feu qui bloque et un site sans appareils ne se ressemblent
+plus.
+
+Compter les paquets reçus ne suffisait pas : Windows embarque une règle
+`mDNS (UDP-Entrée)` qui admet le multicast pour n'importe quel programme, si bien
+que le trafic continue d'arriver alors même que le programme est bloqué — mesuré
+ici à 95 datagrammes pour zéro appareil.
 
 Pour vérifier ce qui bloque :
 

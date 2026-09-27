@@ -87,9 +87,17 @@ public sealed class MainViewModel : ObservableObject, IDisposable
 
     /// <summary>Texte de l'état vide. Un pare-feu qui bloque et un parc absent
     /// donnent la même liste vide ; seule la présence de trafic mDNS les sépare.</summary>
-    public string EmptyText => Registry.InboundLikelyBlocked
-        ? Loc["devices.emptyFirewall"]
-        : Loc["devices.empty"];
+    public string EmptyText
+    {
+        get
+        {
+            if (!Registry.InboundBlocked)
+                return Loc["devices.empty"];
+
+            var message = Loc["devices.emptyFirewall"];
+            return Registry.Firewall.RuleName is { } nom ? $"{message} (« {nom} »)" : message;
+        }
+    }
 
     /// <summary>Les modules restés en mode cloud s'annoncent sur le même service mDNS
     /// que les modules DIY. Ils sont masqués par défaut : rien n'est pilotable dessus
