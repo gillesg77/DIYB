@@ -84,6 +84,17 @@ Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environmen
 ; en exige de nouvelles, d'où leur création ici plutôt qu'un port global.
 ; profile=any et non privé/domaine : Windows classe couramment un réseau filaire
 ; d'entreprise en « Public », et la découverte échouerait alors en silence.
+; netsh n'écrase pas une règle de même nom, il en ajoute une seconde : sans purge
+; préalable, chaque réinstallation empile les siennes, et celles d'une version
+; antérieure survivent avec leurs anciens profils. La purge vise le chemin du
+; programme, ce qui emporte aussi les règles créées par l'invite de Windows.
+Filename: "{sys}\netsh.exe"; \
+    Parameters: "advfirewall firewall delete rule name=all program=""{app}\{#AppExe}"""; \
+    Flags: runhidden waituntilterminated; Tasks: firewall
+Filename: "{sys}\netsh.exe"; \
+    Parameters: "advfirewall firewall delete rule name=all program=""{app}\cli\{#CliExe}"""; \
+    Flags: runhidden waituntilterminated; Tasks: firewall
+
 Filename: "{sys}\netsh.exe"; \
     Parameters: "advfirewall firewall add rule name=""DIYB - découverte mDNS"" dir=in action=allow program=""{app}\{#AppExe}"" protocol=udp profile=any enable=yes"; \
     Flags: runhidden waituntilterminated; Tasks: firewall
