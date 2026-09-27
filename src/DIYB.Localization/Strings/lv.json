@@ -58,6 +58,7 @@
   "devices.count": "{0} ierīce(s)",
   "devices.selected": "Atlasītas: {0}",
   "devices.empty": "Neviena ierīce nav atrasta. Pārslēdziet moduļus DIY režīmā un palieciet tajā pašā tīklā.",
+  "devices.emptyFirewall": "Nav saņemts neviens tīkla paziņojums. Ugunsmūris bloķē ienākošo UDP šai programmai — pārinstalējiet ar atzīmētu ugunsmūra opciju vai pievienojiet noteikumu manuāli.",
   "devices.scanning": "Gaida paziņojumus…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Mākoņa režīms — nav vadāms",

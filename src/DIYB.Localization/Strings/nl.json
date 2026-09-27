@@ -58,6 +58,7 @@
   "devices.count": "{0} apparaat/apparaten",
   "devices.selected": "{0} geselecteerd",
   "devices.empty": "Geen apparaat gevonden. Zet de modules in DIY-modus en blijf op hetzelfde netwerk.",
+  "devices.emptyFirewall": "Geen enkele netwerkaankondiging ontvangen. De firewall blokkeert inkomende UDP voor dit programma — installeer opnieuw met de firewalloptie aangevinkt, of voeg handmatig een regel toe.",
   "devices.scanning": "Luisteren naar aankondigingen…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Cloudmodus — niet bestuurbaar",

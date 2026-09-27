@@ -58,6 +58,7 @@
   "devices.count": "{0} įrenginys (-iai)",
   "devices.selected": "Pažymėta: {0}",
   "devices.empty": "Įrenginių nerasta. Perjunkite modulius į DIY režimą ir likite tame pačiame tinkle.",
+  "devices.emptyFirewall": "Negauta nė vieno tinklo pranešimo. Užkarda blokuoja šios programos gaunamą UDP — įdiekite iš naujo pažymėję užkardos parinktį arba pridėkite taisyklę rankiniu būdu.",
   "devices.scanning": "Laukiama pranešimų…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Debesies režimas — nevaldomas",

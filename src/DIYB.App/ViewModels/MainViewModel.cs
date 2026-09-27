@@ -34,7 +34,11 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     public MainViewModel()
     {
         _dispatcher = DispatcherQueue.GetForCurrentThread();
-        Devices.CollectionChanged += (_, _) => Raise(nameof(IsEmpty));
+        Devices.CollectionChanged += (_, _) =>
+        {
+            Raise(nameof(IsEmpty));
+            Raise(nameof(EmptyText));
+        };
 
         Log = new ApiLog();
         Registry = new DeviceRegistry(_mdns, Log);
@@ -80,6 +84,12 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     public ObservableCollection<LogRow> LogEntries { get; } = new();
 
     public bool IsEmpty => Devices.Count == 0;
+
+    /// <summary>Texte de l'état vide. Un pare-feu qui bloque et un parc absent
+    /// donnent la même liste vide ; seule la présence de trafic mDNS les sépare.</summary>
+    public string EmptyText => Registry.InboundLikelyBlocked
+        ? Loc["devices.emptyFirewall"]
+        : Loc["devices.empty"];
 
     /// <summary>Les modules restés en mode cloud s'annoncent sur le même service mDNS
     /// que les modules DIY. Ils sont masqués par défaut : rien n'est pilotable dessus
@@ -211,6 +221,7 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     {
         Registry.Refresh();
         Status = Loc["devices.scanning"];
+        Raise(nameof(EmptyText));
     }
 
     /// <summary>Actions ciblant une seule ligne, déclenchées depuis la liste.</summary>
@@ -441,6 +452,7 @@ public sealed class MainViewModel : ObservableObject, IDisposable
 
         UpdateCount();
         Raise(nameof(Loc));
+        Raise(nameof(EmptyText));
     }
 
     private void AppendLog(LogEntry entry)

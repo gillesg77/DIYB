@@ -58,6 +58,7 @@
   "devices.count": "Urządzenia: {0}",
   "devices.selected": "Zaznaczono: {0}",
   "devices.empty": "Nie znaleziono urządzeń. Przełącz moduły w tryb DIY i pozostań w tej samej sieci.",
+  "devices.emptyFirewall": "Nie odebrano żadnego ogłoszenia sieciowego. Zapora blokuje przychodzący UDP dla tego programu — zainstaluj ponownie z zaznaczoną opcją zapory lub dodaj regułę ręcznie.",
   "devices.scanning": "Nasłuchiwanie ogłoszeń…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Tryb chmury — brak sterowania",

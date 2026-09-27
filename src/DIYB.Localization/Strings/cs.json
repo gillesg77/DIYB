@@ -58,6 +58,7 @@
   "devices.count": "Zařízení: {0}",
   "devices.selected": "Vybráno: {0}",
   "devices.empty": "Nebylo nalezeno žádné zařízení. Přepněte moduly do režimu DIY a zůstaňte ve stejné síti.",
+  "devices.emptyFirewall": "Nebylo přijato žádné síťové oznámení. Brána firewall blokuje příchozí UDP pro tento program — přeinstalujte se zaškrtnutou volbou firewallu nebo přidejte pravidlo ručně.",
   "devices.scanning": "Naslouchání oznámením…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Cloudový režim — nelze ovládat",

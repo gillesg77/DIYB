@@ -58,6 +58,7 @@
   "devices.count": "장치 {0}대",
   "devices.selected": "{0}대 선택됨",
   "devices.empty": "장치를 찾을 수 없습니다. 모듈을 DIY 모드로 전환하고 같은 네트워크에 연결하세요.",
+  "devices.emptyFirewall": "네트워크 알림을 전혀 수신하지 못했습니다. 방화벽이 이 프로그램의 인바운드 UDP를 차단하고 있습니다. 방화벽 옵션을 선택해 다시 설치하거나 규칙을 직접 추가하세요.",
   "devices.scanning": "알림 수신 대기 중…",
   "device.cloudBadge": "클라우드",
   "device.cloudMode": "클라우드 모드 — 제어 불가",

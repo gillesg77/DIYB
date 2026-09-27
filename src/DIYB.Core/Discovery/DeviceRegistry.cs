@@ -49,6 +49,13 @@ public sealed class DeviceRegistry : IDisposable
 
     public DiyDevice? Find(string deviceId) => _devices.GetValueOrDefault(deviceId);
 
+    public long PacketsReceived => _mdns.PacketsReceived;
+
+    /// <summary>Vrai quand l'écoute n'a rien reçu du tout : sur un réseau vivant
+    /// c'est le signe que le pare-feu bloque l'UDP entrant pour ce programme, pas
+    /// qu'aucun appareil n'est présent.</summary>
+    public bool InboundLikelyBlocked => PacketsReceived == 0;
+
     public void Start()
     {
         lock (_gate)

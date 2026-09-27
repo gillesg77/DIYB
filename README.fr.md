@@ -33,6 +33,11 @@ Pour les poser à la main :
 netsh advfirewall firewall add rule name="DIYB - découverte mDNS" dir=in action=allow program="C:\chemin\vers\DIYB.exe" protocol=udp profile=private,domain enable=yes
 ```
 
+Quand rien n'est reçu du tout — pas un datagramme mDNS, là où tout réseau vivant
+en produit un filet continu, imprimantes, téléviseurs et partages confondus —
+l'application le dit explicitement au lieu d'annoncer une liste vide. Un pare-feu
+qui bloque et un site sans appareils ne se ressemblent plus.
+
 Pour vérifier ce qui bloque :
 
 ```bash

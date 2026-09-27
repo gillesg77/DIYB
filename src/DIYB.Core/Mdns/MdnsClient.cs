@@ -18,6 +18,13 @@ public sealed class MdnsClient : IDisposable
     private CancellationTokenSource? _cts;
     private Socket? _receiver;
     private bool _disposed;
+    private long _packetsReceived;
+
+    /// <summary>Datagrammes reçus depuis le démarrage, tous émetteurs confondus.
+    /// Un réseau actif en produit toujours — imprimantes, téléviseurs, partages —
+    /// donc un compteur resté à zéro trahit un blocage en entrée plutôt qu'une
+    /// absence d'appareils.</summary>
+    public long PacketsReceived => Interlocked.Read(ref _packetsReceived);
 
     public event EventHandler<MdnsMessageEventArgs>? MessageReceived;
 
@@ -172,6 +179,10 @@ public sealed class MdnsClient : IDisposable
             {
                 continue;
             }
+
+            // Compté avant l'analyse : un datagramme même illisible prouve que la
+            // réception fonctionne.
+            Interlocked.Increment(ref _packetsReceived);
 
             DnsMessage message;
             try

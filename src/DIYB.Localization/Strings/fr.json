@@ -58,6 +58,7 @@
   "devices.count": "{0} appareil(s)",
   "devices.selected": "{0} sélectionné(s)",
   "devices.empty": "Aucun appareil trouvé. Passez les modules en mode DIY et restez sur le même réseau.",
+  "devices.emptyFirewall": "Aucune annonce réseau reçue. Le pare-feu bloque l'UDP entrant pour ce programme — réinstallez en cochant l'option pare-feu, ou ajoutez une règle à la main.",
   "devices.scanning": "Écoute des annonces…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Mode cloud — non pilotable",

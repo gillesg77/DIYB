@@ -58,6 +58,7 @@
   "devices.count": "{0} peranti",
   "devices.selected": "{0} dipilih",
   "devices.empty": "Tiada peranti dijumpai. Tetapkan modul ke mod DIY dan kekal pada rangkaian yang sama.",
+  "devices.emptyFirewall": "Tiada pengumuman rangkaian diterima langsung. Tembok api menyekat UDP masuk untuk program ini — pasang semula dengan pilihan tembok api ditanda, atau tambah peraturan secara manual.",
   "devices.scanning": "Menunggu pengumuman…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Mod awan — tidak boleh dikawal",

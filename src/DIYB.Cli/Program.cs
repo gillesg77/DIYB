@@ -54,6 +54,11 @@ namespace DIYB.Cli
 
             try
             {
+                // Diagnostic avant tout : sans un seul datagramme reçu, l'absence
+                // d'appareils s'explique par le pare-feu, pas par le parc.
+                if (registry.InboundLikelyBlocked && !json)
+                    Console.Error.WriteLine(Localizer.Current["devices.emptyFirewall"]);
+
                 var code = await DispatchAsync(arguments, targets, registry, book, client, fleet, json).ConfigureAwait(false);
 
                 if (arguments.Flag("verbose"))

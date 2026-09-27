@@ -58,6 +58,7 @@
   "devices.count": "{0} perangkat",
   "devices.selected": "{0} dipilih",
   "devices.empty": "Tidak ada perangkat ditemukan. Atur modul ke mode DIY dan tetap pada jaringan yang sama.",
+  "devices.emptyFirewall": "Tidak ada pengumuman jaringan yang diterima sama sekali. Firewall memblokir UDP masuk untuk program ini — pasang ulang dengan opsi firewall dicentang, atau tambahkan aturan secara manual.",
   "devices.scanning": "Menunggu pengumuman…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Mode cloud — tidak dapat dikendalikan",

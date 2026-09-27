@@ -58,6 +58,7 @@
   "devices.count": "{0} dispozitiv(e)",
   "devices.selected": "{0} selectat(e)",
   "devices.empty": "Niciun dispozitiv găsit. Treceți modulele în modul DIY și rămâneți în aceeași rețea.",
+  "devices.emptyFirewall": "Nu s-a primit niciun anunț de rețea. Paravanul de protecție blochează UDP-ul de intrare pentru acest program — reinstalați cu opțiunea de paravan bifată sau adăugați o regulă manual.",
   "devices.scanning": "Se ascultă anunțurile…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Mod cloud — nu poate fi controlat",

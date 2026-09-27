@@ -58,6 +58,7 @@
   "devices.count": "{0} pajisje",
   "devices.selected": "{0} të zgjedhura",
   "devices.empty": "Nuk u gjet asnjë pajisje. Vendosini modulet në mënyrën DIY dhe qëndroni në të njëjtin rrjet.",
+  "devices.emptyFirewall": "Nuk u mor asnjë njoftim rrjeti. Muri i zjarrit bllokon UDP-në hyrëse për këtë program — riinstalojeni me opsionin e murit të zjarrit të zgjedhur, ose shtoni një rregull me dorë.",
   "devices.scanning": "Në pritje të njoftimeve…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Mënyra në re — nuk kontrollohet",

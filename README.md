@@ -32,6 +32,11 @@ only. To add one by hand:
 netsh advfirewall firewall add rule name="DIYB - mDNS discovery" dir=in action=allow program="C:\path\to\DIYB.exe" protocol=udp profile=private,domain enable=yes
 ```
 
+When nothing is received at all — not a single mDNS datagram, where any live
+network produces a steady trickle from printers, TVs and shared drives — the
+application says so explicitly instead of reporting an empty list. A blocked
+firewall and an empty site no longer look alike.
+
 To see what is blocking:
 
 ```bash

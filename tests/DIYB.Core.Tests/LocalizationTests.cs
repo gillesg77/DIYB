@@ -5,6 +5,14 @@ using Xunit;
 
 namespace DIYB.Core.Tests;
 
+/// <summary>Les classes de cette collection rechargent le <c>Localizer</c>, qui est
+/// un singleton : xUnit les exécute l'une après l'autre plutôt qu'en parallèle.</summary>
+[CollectionDefinition("Localisation")]
+public sealed class LocalisationCollection
+{
+}
+
+[Collection("Localisation")]
 public class LocalizationTests
 {
     private static readonly Regex Placeholder = new(@"\{[A-Za-z0-9_]+\}", RegexOptions.Compiled);

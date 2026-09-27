@@ -58,6 +58,7 @@
   "devices.count": "{0} 台裝置",
   "devices.selected": "已選取 {0} 台",
   "devices.empty": "找不到裝置。請將模組切換至 DIY 模式，並保持在同一網路。",
+  "devices.emptyFirewall": "未收到任何網路通告。防火牆正在阻擋本程式的輸入 UDP——請勾選防火牆選項重新安裝，或手動新增規則。",
   "devices.scanning": "正在接收通告…",
   "device.cloudBadge": "雲端",
   "device.cloudMode": "雲端模式 — 無法控制",

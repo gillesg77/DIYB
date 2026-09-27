@@ -58,6 +58,7 @@
   "devices.count": "{0} naprav(a)",
   "devices.selected": "Izbrano: {0}",
   "devices.empty": "Nobena naprava ni bila najdena. Preklopite module v način DIY in ostanite v istem omrežju.",
+  "devices.emptyFirewall": "Ni bilo prejeto nobeno omrežno obvestilo. Požarni zid blokira dohodni UDP za ta program — znova namestite z označeno možnostjo požarnega zidu ali ročno dodajte pravilo.",
   "devices.scanning": "Poslušanje objav…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Način v oblaku — ni mogoče upravljati",

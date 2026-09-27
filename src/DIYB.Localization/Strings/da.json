@@ -58,6 +58,7 @@
   "devices.count": "{0} enhed(er)",
   "devices.selected": "{0} valgt",
   "devices.empty": "Ingen enhed fundet. Sæt modulerne i DIY-tilstand, og bliv på samme netværk.",
+  "devices.emptyFirewall": "Der er slet ikke modtaget nogen netværksmeddelelse. Firewallen blokerer indgående UDP for dette program — geninstaller med firewallindstillingen markeret, eller tilføj en regel manuelt.",
   "devices.scanning": "Lytter efter annonceringer…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Sky-tilstand — kan ikke styres",

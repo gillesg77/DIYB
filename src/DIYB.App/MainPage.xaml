@@ -250,7 +250,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <TextBlock Text="{x:Bind ViewModel.Loc.Get('devices.empty'), Mode=OneWay}"
+            <TextBlock Text="{x:Bind ViewModel.EmptyText, Mode=OneWay}"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.6"
                        TextWrapping="Wrap" MaxWidth="420" TextAlignment="Center" IsHitTestVisible="False"
                        Visibility="{x:Bind ViewModel.IsEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />

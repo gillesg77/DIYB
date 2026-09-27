@@ -58,6 +58,7 @@
   "devices.count": "{0} 台设备",
   "devices.selected": "已选 {0} 台",
   "devices.empty": "未找到设备。请将模块切换到 DIY 模式，并保持在同一网络中。",
+  "devices.emptyFirewall": "未收到任何网络通告。防火墙正在阻止本程序的入站 UDP——请勾选防火墙选项重新安装，或手动添加规则。",
   "devices.scanning": "正在监听通告…",
   "device.cloudBadge": "云端",
   "device.cloudMode": "云端模式 — 无法控制",

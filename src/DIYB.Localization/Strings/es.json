@@ -58,6 +58,7 @@
   "devices.count": "{0} dispositivo(s)",
   "devices.selected": "{0} seleccionado(s)",
   "devices.empty": "No se encontró ningún dispositivo. Ponga los módulos en modo DIY y permanezca en la misma red.",
+  "devices.emptyFirewall": "No se ha recibido ningún anuncio de red. El cortafuegos bloquea el UDP entrante para este programa: reinstale con la opción de cortafuegos marcada o añada una regla a mano.",
   "devices.scanning": "Escuchando anuncios…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Modo nube — no controlable",

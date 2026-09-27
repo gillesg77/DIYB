@@ -58,6 +58,7 @@
   "devices.count": "{0} apparat(i)",
   "devices.selected": "{0} magħżula",
   "devices.empty": "Ma nstab l-ebda apparat. Poġġi l-moduli fil-modalità DIY u ibqa' fuq l-istess netwerk.",
+  "devices.emptyFirewall": "Ma wasal l-ebda tħabbira tan-netwerk. Il-firewall qed timblokka l-UDP dieħel għal dan il-programm — erġa' installa bl-għażla tal-firewall immarkata, jew żid regola bl-idejn.",
   "devices.scanning": "Qed jistenna t-tħabbiriet…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Modalità cloud — ma tistax tikkontrollah",

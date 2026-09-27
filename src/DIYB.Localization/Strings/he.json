@@ -58,6 +58,7 @@
   "devices.count": "{0} התקנים",
   "devices.selected": "{0} נבחרו",
   "devices.empty": "לא נמצא אף התקן. העבר את המודולים למצב DIY והישאר באותה רשת.",
+  "devices.emptyFirewall": "לא התקבלה שום הכרזת רשת. חומת האש חוסמת UDP נכנס עבור תוכנית זו — התקן מחדש עם אפשרות חומת האש מסומנת, או הוסף כלל ידנית.",
   "devices.scanning": "מאזין להכרזות…",
   "device.cloudBadge": "ענן",
   "device.cloudMode": "מצב ענן — לא ניתן לשליטה",

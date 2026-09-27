@@ -58,6 +58,7 @@
   "devices.count": "{0} dispositivo(s)",
   "devices.selected": "{0} seleccionado(s)",
   "devices.empty": "Non se atopou ningún dispositivo. Poña os módulos en modo DIY e permaneza na mesma rede.",
+  "devices.emptyFirewall": "Non se recibiu ningún anuncio de rede. A devasa bloquea o UDP entrante para este programa: reinstale coa opción de devasa marcada ou engada unha regra a man.",
   "devices.scanning": "Escoitando os anuncios…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Modo nube — non controlable",

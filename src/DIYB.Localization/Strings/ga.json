@@ -58,6 +58,7 @@
   "devices.count": "{0} gléas",
   "devices.selected": "{0} roghnaithe",
   "devices.empty": "Níor aimsíodh gléas ar bith. Cuir na modúil i mód DIY agus fan ar an líonra céanna.",
+  "devices.emptyFirewall": "Níor faightear aon fhógra líonra ar chor ar bith. Tá an balla dóiteáin ag cur bac ar UDP isteach don chlár seo — athshuiteáil leis an rogha balla dóiteáin ticeáilte, nó cuir riail leis de láimh.",
   "devices.scanning": "Ag éisteacht le fógraí…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Mód néil — ní féidir é a rialú",

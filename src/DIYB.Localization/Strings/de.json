@@ -58,6 +58,7 @@
   "devices.count": "{0} Gerät(e)",
   "devices.selected": "{0} ausgewählt",
   "devices.empty": "Kein Gerät gefunden. Versetzen Sie die Geräte in den DIY-Modus und bleiben Sie im selben Netzwerk.",
+  "devices.emptyFirewall": "Überhaupt keine Netzwerkankündigung empfangen. Die Firewall blockiert eingehendes UDP für dieses Programm — neu installieren mit aktivierter Firewall-Option, oder eine Regel von Hand hinzufügen.",
   "devices.scanning": "Warten auf Ankündigungen…",
   "device.cloudBadge": "CLOUD",
   "device.cloudMode": "Cloud-Modus — nicht steuerbar",
