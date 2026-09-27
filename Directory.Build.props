@@ -9,5 +9,12 @@
     <Company>gillesg77</Company>
     <Copyright>Copyright (c) 2026 gillesg77</Copyright>
     <Version>0.1.1</Version>
+
+    <!-- Remplace la racine du dépôt par /_/ dans tout chemin embarqué. Sans cela
+         les binaires portent le chemin de la machine de compilation, qui varie
+         d'un poste à l'autre et n'a rien à faire dans un fichier public.
+         ContinuousIntegrationBuild n'y suffit pas : il dépend de SourceLink et
+         reste sans effet là où l'information de dépôt manque. -->
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
   </PropertyGroup>
 </Project>
