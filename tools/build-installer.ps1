@@ -114,7 +114,10 @@ Compress-Archive -Path (Join-Path $publish "diyb-cli-win-x64\*") `
     -DestinationPath (Join-Path $publish "diyb-cli-$Version-win-x64.zip") -Force
 
 Write-Host "`nEmpreintes…"
-$empreintes = Get-ChildItem $publish -File -Include *.exe, *.zip | Sort-Object Name | ForEach-Object {
+# -Include ne filtre rien sans -Recurse ni joker dans le chemin : on trie nous-mêmes.
+$empreintes = Get-ChildItem $publish -File |
+    Where-Object { $_.Extension -in ".exe", ".zip" } |
+    Sort-Object Name | ForEach-Object {
     "{0}  {1}" -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant(), $_.Name
 }
 $empreintes | Set-Content (Join-Path $publish "SHA256SUMS.txt") -Encoding ascii
