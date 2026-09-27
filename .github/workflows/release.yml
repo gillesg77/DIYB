@@ -1,0 +1,105 @@
+name: Release
+
+# Poser un tag v0.2.0 suffit : le runner compile, teste, produit l'installeur et
+# publie. Rien ne dépend plus du poste de développement, et les chemins locaux
+# ne peuvent structurellement plus se retrouver dans un binaire public.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version à produire, sans le v (ex. 0.2.0)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      # Le tag fait foi ; le déclenchement manuel fournit la version à la main.
+      - name: Déterminer la version
+        id: version
+        shell: pwsh
+        run: |
+          $version = if ('${{ github.event_name }}' -eq 'workflow_dispatch') {
+            '${{ github.event.inputs.version }}'
+          } else {
+            '${{ github.ref_name }}'.TrimStart('v')
+          }
+
+          if ($version -notmatch '^\d+\.\d+\.\d+$') {
+            throw "Version « $version » inattendue : trois nombres séparés par des points."
+          }
+
+          "value=$version" >> $env:GITHUB_OUTPUT
+          Write-Host "Version : $version"
+
+      - name: Tester
+        run: dotnet test DIYB.sln --configuration Release
+
+      - name: Vérifier les traductions
+        run: python tools/check-translations.py
+
+      - name: Installer Inno Setup
+        run: choco install innosetup --no-progress -y
+
+      - name: Produire l'installeur et les archives
+        shell: pwsh
+        run: ./tools/build-installer.ps1 -Version ${{ steps.version.outputs.value }}
+
+      # Le script vérifie déjà l'auteur des assemblies et l'absence de chemins de
+      # compilation ; ce contrôle vise ce que le runner pourrait injecter.
+      - name: Contrôler les binaires publiés
+        shell: pwsh
+        run: |
+          $interdits = @($env:GITHUB_WORKSPACE, 'runneradmin')
+          $octets = [System.Text.Encoding]::GetEncoding(28591)
+
+          $fuites = Get-ChildItem publish -Recurse -Include *.dll, *.exe | Where-Object {
+            $contenu = $octets.GetString([System.IO.File]::ReadAllBytes($_.FullName))
+            $interdits | Where-Object { $contenu.Contains($_) }
+          }
+
+          if ($fuites) {
+            $fuites | ForEach-Object { Write-Host "fuite : $($_.Name)" }
+            throw "Un chemin du runner subsiste dans les binaires."
+          }
+
+          Write-Host "Binaires vérifiés."
+
+      # gh est préinstallé sur les runners : publier avec lui plutôt qu'avec une
+      # action tierce évite une dépendance de plus dans la chaîne de publication.
+      - name: Publier la release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $v = '${{ steps.version.outputs.value }}'
+          $fichiers = @(
+            "publish/DIYB-$v-setup.exe",
+            "publish/DIYB-$v-win-x64.zip",
+            "publish/diyb-cli-$v-win-x64.zip",
+            "publish/SHA256SUMS.txt"
+          )
+
+          foreach ($f in $fichiers) {
+            if (-not (Test-Path $f)) { throw "Artefact manquant : $f" }
+          }
+
+          # Une release existante est complétée plutôt que dupliquée, ce qui rend
+          # le workflow rejouable après un échec en fin de course.
+          if (gh release view "v$v" 2>$null) {
+            gh release upload "v$v" $fichiers --clobber
+          } else {
+            gh release create "v$v" $fichiers --title "DIYB $v" --generate-notes
+          }

@@ -84,7 +84,22 @@ powershell -ExecutionPolicy Bypass -File tools/build-installer.ps1
 ```
 
 Le script publie les deux exécutables, vérifie que les XAML compilés et les
-traductions sont bien présents, puis compile `publish/DIYB-x.y.z-setup.exe`.
+traductions sont bien présents, puis compile `publish/DIYB-x.y.z-setup.exe` et
+écrit les empreintes. L'option `-Version 0.2.0` surcharge le numéro lu dans
+`Directory.Build.props`.
+
+### Publier une version
+
+Poser un tag `v*` suffit : un workflow GitHub Actions teste, produit l'installeur
+et publie la release sur une machine neuve.
+
+```bash
+git tag v0.2.0 && git push origin v0.2.0
+```
+
+Compiler sur un runner plutôt que sur un poste n'est pas qu'un confort : un chemin
+local ne peut plus se retrouver dans un binaire public, et le workflow refuse de
+publier s'il en trouve un.
 
 L'icône se régénère depuis son tracé, en huit résolutions de 16 à 256 px :
 

@@ -4,10 +4,24 @@
 #
 # Prérequis : SDK .NET 8 et Inno Setup 6 (winget install JRSoftware.InnoSetup).
 
+param(
+    # Absente, la version est lue dans Directory.Build.props. La publication la
+    # fournit depuis le tag Git.
+    [string] $Version
+)
+
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path $PSScriptRoot -Parent
 $publish = Join-Path $root "publish"
+
+if (-not $Version) {
+    $props = Get-Content (Join-Path $root "Directory.Build.props") -Raw
+    if ($props -notmatch "<Version>([^<]+)</Version>") { throw "Version introuvable dans Directory.Build.props." }
+    $Version = $Matches[1]
+}
+
+Write-Host "Version : $Version"
 
 function Find-Iscc {
     $candidates = @(
@@ -32,6 +46,7 @@ Write-Host "`nPublication de l'interface…"
 dotnet publish (Join-Path $root "src\DIYB.App\DIYB.App.csproj") `
     -c Release -r win-x64 --self-contained false `
     -p:DebugType=none -p:DebugSymbols=false -p:ContinuousIntegrationBuild=true `
+    -p:Version=$Version -p:InformationalVersion=$Version `
     -o (Join-Path $publish "DIYB-win-x64") --nologo -v minimal
 if ($LASTEXITCODE -ne 0) { throw "Échec de la publication de l'interface." }
 
@@ -39,6 +54,7 @@ Write-Host "`nPublication de la ligne de commande…"
 dotnet publish (Join-Path $root "src\DIYB.Cli\DIYB.Cli.csproj") `
     -c Release -r win-x64 --self-contained false `
     -p:DebugType=none -p:DebugSymbols=false -p:ContinuousIntegrationBuild=true `
+    -p:Version=$Version -p:InformationalVersion=$Version `
     -o (Join-Path $publish "diyb-cli-win-x64") --nologo -v minimal
 if ($LASTEXITCODE -ne 0) { throw "Échec de la publication de la ligne de commande." }
 
@@ -80,7 +96,7 @@ if ($fuites) {
 Write-Host "Binaires vérifiés : auteur conforme, aucun chemin local."
 
 Write-Host "`nCompilation de l'installeur…"
-& $iscc (Join-Path $root "packaging\DIYB.iss") | Select-Object -Last 5
+& $iscc "/DAppVersion=$Version" (Join-Path $root "packaging\DIYB.iss") | Select-Object -Last 5
 if ($LASTEXITCODE -ne 0) { throw "Échec de la compilation de l'installeur." }
 
 # Archives sans installation, pour qui préfère décompresser. La GPL impose que
@@ -93,9 +109,15 @@ foreach ($dossier in @("DIYB-win-x64", "diyb-cli-win-x64")) {
 }
 
 Compress-Archive -Path (Join-Path $publish "DIYB-win-x64\*") `
-    -DestinationPath (Join-Path $publish "DIYB-0.1.0-win-x64.zip") -Force
+    -DestinationPath (Join-Path $publish "DIYB-$Version-win-x64.zip") -Force
 Compress-Archive -Path (Join-Path $publish "diyb-cli-win-x64\*") `
-    -DestinationPath (Join-Path $publish "diyb-cli-0.1.0-win-x64.zip") -Force
+    -DestinationPath (Join-Path $publish "diyb-cli-$Version-win-x64.zip") -Force
+
+Write-Host "`nEmpreintes…"
+$empreintes = Get-ChildItem $publish -File -Include *.exe, *.zip | Sort-Object Name | ForEach-Object {
+    "{0}  {1}" -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant(), $_.Name
+}
+$empreintes | Set-Content (Join-Path $publish "SHA256SUMS.txt") -Encoding ascii
 
 Write-Host "`nArtefacts :"
 Get-ChildItem $publish -File | ForEach-Object {

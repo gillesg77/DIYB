@@ -1,0 +1,36 @@
+name: CI
+
+# Compilation et tests à chaque poussée. La publication est dans release.yml :
+# ici on veut un retour rapide, pas des artefacts.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    # WinUI 3 et l'inspection du pare-feu imposent Windows.
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restaurer
+        run: dotnet restore DIYB.sln
+
+      - name: Compiler
+        run: dotnet build DIYB.sln --configuration Release --no-restore
+
+      - name: Tester
+        run: dotnet test DIYB.sln --configuration Release --no-build --verbosity normal
+
+      # Contrôle indépendant de la suite de tests : JSON valide, parité des clés
+      # avec la référence anglaise, marqueurs de substitution préservés.
+      - name: Vérifier les traductions
+        run: python tools/check-translations.py

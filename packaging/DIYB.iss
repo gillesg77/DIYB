@@ -2,7 +2,11 @@
 ; Compilé par tools/build-installer.ps1, qui publie d'abord les deux exécutables.
 
 #define AppName "DIYB"
-#define AppVersion "0.1.0"
+; Surchargeable par ISCC /DAppVersion=x.y.z : en publication, la version vient du
+; tag Git, pas du fichier — sinon le tag et le binaire finissent par diverger.
+#ifndef AppVersion
+  #define AppVersion "0.1.0"
+#endif
 #define AppPublisher "gillesg77"
 #define AppUrl "https://github.com/gillesg77/DIYB"
 #define AppExe "DIYB.exe"
