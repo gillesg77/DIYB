@@ -23,9 +23,13 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                <TextBlock Text="{x:Bind ViewModel.Loc.Get('app.title'), Mode=OneWay}"
-                           FontSize="24" FontWeight="SemiBold"
-                           Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="{x:Bind ViewModel.Loc.Get('app.title'), Mode=OneWay}"
+                               FontSize="24" FontWeight="SemiBold"
+                               Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <TextBlock Text="{x:Bind ViewModel.Version}" FontSize="12" VerticalAlignment="Bottom"
+                               Margin="0,0,0,4" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
                 <TextBlock Text="{x:Bind ViewModel.Loc.Get('app.subtitle'), Mode=OneWay}"
                            FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
             </StackPanel>

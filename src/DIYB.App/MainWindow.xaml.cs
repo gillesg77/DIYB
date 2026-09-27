@@ -1,3 +1,4 @@
+using DIYB.Core;
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
@@ -13,7 +14,7 @@ public sealed partial class MainWindow : Window
     {
         InitializeComponent();
 
-        Title = "DIYB";
+        Title = $"DIYB {AppVersion.Display}";
 
         // Matériau Mica : la fenêtre prend la teinte du bureau, sur laquelle les
         // cartes de contenu se détachent.

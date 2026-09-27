@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using DIYB.Localization;
 using DIYB.App.Mvvm;
+using DIYB.Core;
 using DIYB.Core.Devices;
 using DIYB.Core.Diagnostics;
 using DIYB.Core.Discovery;
@@ -60,6 +61,8 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     }
 
     public Localizer Loc => Localizer.Current;
+
+    public string Version => AppVersion.Display;
 
     public ApiLog Log { get; }
 

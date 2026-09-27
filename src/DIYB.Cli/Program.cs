@@ -1,4 +1,5 @@
 using DIYB.Cli;
+using DIYB.Core;
 using DIYB.Core.Devices;
 using DIYB.Core.Diagnostics;
 using DIYB.Core.Discovery;
@@ -23,6 +24,12 @@ namespace DIYB.Cli
         public static async Task<int> RunAsync(string[] rawArguments)
         {
             var arguments = CliArguments.Parse(rawArguments);
+
+            if (arguments.Has("version") || arguments.Command is "version")
+            {
+                Console.WriteLine($"diyb-cli {AppVersion.Display}");
+                return ExitOk;
+            }
 
             if (arguments.Has("help") || arguments.Command is "" or "help")
             {
@@ -474,8 +481,8 @@ namespace DIYB.Cli
         }
 
         private static void PrintUsage() => Console.WriteLine(
-            """
-            diyb-cli — SONOFF / eWeLink DIY mode control
+            $"""
+            diyb-cli {AppVersion.Display} — SONOFF / eWeLink DIY mode control
 
             USAGE
               diyb-cli <command> [targets] [options]
@@ -507,6 +514,7 @@ namespace DIYB.Cli
               --force-signal              Flash despite a weak signal
               --verbose                   Dump the protocol exchanges to stderr
               -h, --help                  This help
+              --version                   Print the version and exit
 
             EXIT CODES
               0 success   1 at least one failure   2 usage error   3 no device matched
